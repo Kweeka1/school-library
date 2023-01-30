@@ -18,6 +18,3 @@ class Person
     @age >= 18
   end
 end
-
-cl = Person.new(18, 'john', parent_permission: false)
-puts cl.can_use_services?
