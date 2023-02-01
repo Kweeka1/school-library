@@ -1,6 +1,5 @@
 require_relative 'person'
 class Teacher < Person
-
   # @param [Integer] age
   # @param [String] specialization
   # @param [String] name
