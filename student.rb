@@ -1,7 +1,7 @@
 require_relative 'person'
 
 class Student < Person
-  attr_accessor :classroom
+  attr_reader :classroom
 
   # @param [Integer] age
   # @param [Classroom] classroom
@@ -18,7 +18,7 @@ class Student < Person
   end
 
   # @param [Classroom] classroom
-  def add_classroom(classroom)
+  def classroom=(classroom)
     @classroom = classroom
     classroom.students << self unless classroom.students.include? self
   end
