@@ -5,6 +5,7 @@ class BaseDecorator < Nameable
     @nameable = nameable
   end
 
+  # @return [Nameable]
   def correct_name
     @nameable
   end
