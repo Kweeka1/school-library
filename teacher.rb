@@ -9,6 +9,7 @@ class Teacher < Person
     @specialization = specialization
   end
 
+  # @return [Boolean]
   def can_use_services?
     true
   end
