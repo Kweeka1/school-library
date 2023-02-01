@@ -16,4 +16,16 @@ class Student < Person
   def play_hooky
     '¯\(ツ)/¯'
   end
+
+  # @param [Classroom] classroom
+  def add_classroom(classroom)
+    @classroom = classroom
+    classroom.students << self unless classroom.students.include? self
+  end
+
+  # @param [Book] book
+  # @param [Time] date
+  def add_rental(book, date)
+    Rental.new(date, book, self)
+  end
 end
