@@ -104,6 +104,10 @@ class App
     if with_id
       books.each_with_index { |book, idx| puts "#{idx}) Title: #{book.title}, Author: #{book.author}" }
     else
+      if books.empty?
+        puts "No books added yet\n\n"
+        return
+      end
       books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
     end
     puts ''
@@ -115,6 +119,10 @@ class App
         puts "#{idx}) [#{person.class}] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
       end
     else
+      if people.empty?
+        puts "No person created yet\n\n"
+        return
+      end
       people.each { |person| puts "[#{person.class}] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}" }
     end
     puts ''
@@ -141,7 +149,7 @@ class App
       Rental.new(date, book, person)
     rescue NoMethodError
       puts "Book or person not found. Please try again!\n\n"
-      add_rental(books, people)
+      return add_rental(books, people)
     end
     puts "Rental Added!\n\n"
   end
