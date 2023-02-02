@@ -12,7 +12,7 @@ class Book
   end
 
   # @param [Person] person
-  # @param [Time] date
+  # @param [Date] date
   def add_rental(person, date)
     Rental.new(date, self, person)
   end
