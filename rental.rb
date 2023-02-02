@@ -1,7 +1,7 @@
 class Rental
   attr_accessor :date, :book, :person
 
-  # @param [Time] date
+  # @param [Date] date
   # @param [Book] book
   # @param [Person] person
   def initialize(date, book, person)
