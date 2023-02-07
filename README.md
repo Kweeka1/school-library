@@ -96,6 +96,12 @@ To run tests, run the following command:
 
 - GitHub: [Mohamed Talbi](https://github.com/Kweeka1/)
 
+👤 **Ifeanyi Oti**
+
+- GitHub: [@githubhandle](https://github.com/ifeanyi305)
+- Twitter: [@twitterhandle](https://twitter.com/OtiJoseph305)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/oti-joseph-ifeanyi)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
