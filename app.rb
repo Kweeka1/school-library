@@ -1,22 +1,20 @@
-require_relative 'person'
 require_relative 'book'
-require_relative 'classroom'
 require_relative 'student'
 require_relative 'rental'
 require_relative 'teacher'
+require_relative 'user_entry'
 require 'date'
 
 class App
   def initialize
     @books = []
     @people = []
-    puts "Welcome to School Library App!\n\n"
   end
 
   def run
     loop do
       puts main_section
-      choice = get_number('', 'Please enter a valid number!')
+      choice = UserEntry.get_number('', 'Please enter a valid number!')
       return if choice == 7
 
       run_available_options(choice)
@@ -56,8 +54,11 @@ class App
   end
 
   def add_person
-    person_type = get_number('Do you want to create a Student (1) or a teacher (2)?. Back to main (any number): ',
-                             'Please enter a valid number!')
+    person_type = UserEntry.get_number(
+      'Do you want to create a Student (1) or a teacher (2)?. Back to main (any number): ',
+      'Please enter a valid number!'
+    )
+
     case person_type
     when 1
       @people << add_student
@@ -69,9 +70,9 @@ class App
   end
 
   def add_student
-    age = get_number('Age: ', 'Please enter a valid number!')
-    name = get_str('Name: ', 'Please enter a proper name!')
-    permission = get_bool('Parent permission (y/n): ', 'Please enter either (y/n)!')
+    age = UserEntry.get_number('Age: ', 'Please enter a valid number!')
+    name = UserEntry.get_str('Name: ', 'Please enter a proper name!')
+    permission = UserEntry.get_bool('Parent permission (y/n): ', 'Please enter either (y/n)!')
     student = Student.new(age, name, parent_permission: permission)
     return unless student
 
@@ -80,9 +81,9 @@ class App
   end
 
   def add_teacher
-    specialization = get_str('Specialization: ', 'Please enter a proper specialization!')
-    age = get_number('Age: ', 'Please enter a valid number!')
-    name = get_str('Name: ', 'Please enter a proper name!')
+    specialization = UserEntry.get_str('Specialization: ', 'Please enter a proper specialization!')
+    age = UserEntry.get_number('Age: ', 'Please enter a valid number!')
+    name = UserEntry.get_str('Name: ', 'Please enter a proper name!')
     teacher = Teacher.new(specialization, age, name)
     return unless teacher
 
@@ -91,8 +92,8 @@ class App
   end
 
   def add_book
-    title = get_str('Title: ', 'Please enter a valid title!')
-    author = get_str('Author: ', 'Please enter a valid author!')
+    title = UserEntry.get_str('Title: ', 'Please enter a valid title!')
+    author = UserEntry.get_str('Author: ', 'Please enter a valid author!')
     book = Book.new(title, author)
     return unless book
 
@@ -136,12 +137,12 @@ class App
 
     puts 'Select a book from the following list:'
     list_books(books, with_id: true)
-    book_idx = get_number('Book: ', 'Please enter a valid number!')
+    book_idx = UserEntry.get_number('Book: ', 'Please enter a valid number!')
 
     puts 'Select a person from the following list:'
     list_people(people, with_id: true)
-    person_idx = get_number('Borrower: ', 'Please enter a valid number!')
-    date = get_date('Date: ', 'Please enter a valid date!')
+    person_idx = UserEntry.get_number('Borrower: ', 'Please enter a valid number!')
+    date = UserEntry.get_date('Date: ', 'Please enter a valid date!')
 
     begin
       person = people.at(person_idx)
@@ -162,7 +163,7 @@ class App
     puts 'Select a person ID from the following list:'
     list_people(people)
 
-    person_id = get_number('Person ID: ', 'Please enter a valid number!')
+    person_id = UserEntry.get_number('Person ID: ', 'Please enter a valid number!')
     person = people.find { |current_person| current_person.id == person_id }
     if person.nil?
       puts "Person with ID: #{person_id} not found!\n\n"
@@ -176,65 +177,5 @@ class App
         puts "Date: #{rental.date}, Book: #{rental.book.title} By #{rental.book.author}\n\n"
       end
     end
-  end
-end
-
-class Boolean
-  attr_reader :value
-
-  def initialize(str)
-    case str
-    when 'y', 'yes', 'Yes', 'Y', 'YES'
-      @value = true
-    when 'n', 'no', 'No', 'N', 'NO'
-      @value = false
-    end
-  end
-end
-
-def get_str(param_name, error = '')
-  print param_name
-  input = gets.chomp
-
-  if input.length > 50 || input.length < 3
-    puts error
-    return get_str(param_name, error)
-  end
-  input
-end
-
-def get_number(param_name, error = '')
-  print param_name
-  input = gets.chomp
-  converted = input.to_i
-
-  unless converted.positive? || input == '0'
-    puts error
-    return get_number(param_name, error)
-  end
-  converted
-end
-
-def get_bool(param_name, error = '')
-  print param_name
-  input = gets.chomp
-  input = Boolean.new(input).value
-
-  unless [true, false].include?(input)
-    puts error
-    return get_bool(param_name, error)
-  end
-  input
-end
-
-def get_date(param_name, error = '')
-  print param_name
-  input = gets.chomp
-
-  begin
-    Date.parse(input)
-  rescue Date::Error
-    puts error
-    get_date(param_name, error)
   end
 end
