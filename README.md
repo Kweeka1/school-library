@@ -96,6 +96,12 @@ To run tests, run the following command:
 
 - GitHub: [Mohamed Talbi](https://github.com/Kweeka1/)
 
+👤 **Ifeanyi Oti**
+
+- GitHub: [@githubhandle](https://github.com/ifeanyi305)
+- Twitter: [@twitterhandle](https://twitter.com/OtiJoseph305)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/oti-joseph-ifeanyi)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
@@ -148,6 +154,6 @@ I would like to thank Microverse for project inspiration.
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](./LICENSE) licensed.
+This project is [MIT](./MIT.md) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
