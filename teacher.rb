@@ -4,8 +4,8 @@ class Teacher < Person
   # @param [String] specialization
   # @param [String] name
   # @param [Boolean] parent_permission
-  def initialize(specialization, age, name = 'Unknown', parent_permission: true)
-    super(age, name, parent_permission: parent_permission)
+  def initialize(specialization, age, name = 'Unknown', id = Random.rand(1..1000), parent_permission: true)
+    super(age, id, name, parent_permission: parent_permission)
     @specialization = specialization
   end
 

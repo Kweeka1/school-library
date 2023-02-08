@@ -5,17 +5,35 @@ require_relative 'teacher'
 require_relative 'user_entry'
 require 'date'
 
+def main_section
+  'Please choose an option by entering a number:
+1 - List all books
+2 - List all people
+3 - Create a person
+4 - Create a book
+5 - Create a rental
+6 - List all rentals for a given person
+7 - Exit'
+end
+
 class App
-  def initialize
-    @books = []
-    @people = []
+  def initialize(serializer, books = [], people = [])
+    @books = books
+    @people = people
+    @serializer = serializer
   end
 
   def run
     loop do
       puts main_section
       choice = UserEntry.get_number('', 'Please enter a valid number!')
-      return if choice == 7
+      if choice == 7
+        @serializer.save('books', @books)
+        @serializer.save('students', @people.select { |person| person.instance_of? Student })
+        @serializer.save('teachers', @people.select { |person| person.instance_of? Teacher })
+        @serializer.save_rentals(@people)
+        return
+      end
 
       run_available_options(choice)
     end
@@ -40,17 +58,6 @@ class App
     else
       puts ''
     end
-  end
-
-  def main_section
-    'Please choose an option by entering a number:
-1 - List all books
-2 - List all people
-3 - Create a person
-4 - Create a book
-5 - Create a rental
-6 - List all rentals for a given person
-7 - Exit'
   end
 
   def add_person
