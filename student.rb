@@ -6,8 +6,8 @@ class Student < Person
   # @param [Integer] age
   # @param [String] name
   # @param [Boolean] parent_permission
-  def initialize(age, name = 'Unknown', parent_permission: true)
-    super(age, name, parent_permission: parent_permission)
+  def initialize(age, name = 'Unknown', id = Random.rand(1..1000), parent_permission: true)
+    super(age, id, name, parent_permission: parent_permission)
   end
 
   # @return [String]
