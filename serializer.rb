@@ -15,7 +15,7 @@ class Serializer
         when 'students'
           data << Student.new(object['age'], object['id'], object['name'],
                               parent_permission: object['parent_permission'])
-        when 'teachers' then data << Teacher.new(object['specialization'], object['age'], object['id'], object['name'],
+        when 'teachers' then data << Teacher.new(object['specialization'], object['age'], object['name'], object['id'],
                                                  parent_permission: true)
         when 'rentals' then data << object
         end
