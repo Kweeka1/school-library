@@ -3,6 +3,11 @@ require 'json'
 class Serializer
   def initialize(path = './data')
     @path = path
+    create_dir_unless_exists(path)
+  end
+
+  def create_dir_unless_exists(path)
+    Dir.mkdir 'data' unless Dir.exist? path
   end
 
   def load(file_name)
