@@ -13,7 +13,7 @@ class Serializer
         case file_name
         when 'books' then data << Book.new(object['title'], object['author'])
         when 'students'
-          data << Student.new(object['age'], object['id'], object['name'],
+          data << Student.new(object['age'], object['name'], object['id'],
                               parent_permission: object['parent_permission'])
         when 'teachers' then data << Teacher.new(object['specialization'], object['age'], object['name'], object['id'],
                                                  parent_permission: true)
