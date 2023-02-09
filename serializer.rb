@@ -3,6 +3,11 @@ require 'json'
 class Serializer
   def initialize(path = './data')
     @path = path
+    create_dir_unless_exists(path)
+  end
+
+  def create_dir_unless_exists(path)
+    Dir.mkdir 'data' unless Dir.exist? path
   end
 
   def load(file_name)
@@ -13,9 +18,9 @@ class Serializer
         case file_name
         when 'books' then data << Book.new(object['title'], object['author'])
         when 'students'
-          data << Student.new(object['age'], object['id'], object['name'],
+          data << Student.new(object['age'], object['name'], object['id'],
                               parent_permission: object['parent_permission'])
-        when 'teachers' then data << Teacher.new(object['specialization'], object['age'], object['id'], object['name'],
+        when 'teachers' then data << Teacher.new(object['specialization'], object['age'], object['name'], object['id'],
                                                  parent_permission: true)
         when 'rentals' then data << object
         end
