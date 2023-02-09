@@ -1,3 +1,5 @@
+require_relative 'nameable'
+
 class BaseDecorator < Nameable
   # @param [Nameable] nameable
   attr_accessor :nameable
